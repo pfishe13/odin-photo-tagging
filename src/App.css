@@ -16,10 +16,11 @@ footer {
   justify-content: space-between;
   align-items: center;
   min-height: 8vh;
-  background-color: #056cf2;
+  background-color: #f23d4c;
 }
 
 header {
+  opacity: 50%;
   top: 0;
 }
 
@@ -27,9 +28,63 @@ footer {
   bottom: 0;
 }
 
+.instructions-popup {
+  z-index: 5;
+  background-color: #553df2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  height: 400px;
+  margin-left: -200px; /* negative half of width above */
+  margin-top: -200px;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
 .main-picture {
   width: 100%;
   object-fit: cover;
   height: 100%;
   /* padding-top: 8vh; */
+}
+
+.gameboard {
+  /* DO NOT CHANGE FROM RELATIVE */
+  position: relative;
+}
+
+.goofy,
+.perry {
+  background-color: blue;
+  opacity: 50%;
+  height: 7%;
+  width: 7%;
+  position: absolute;
+}
+
+.perry {
+  top: 14%;
+  left: 40%;
+}
+
+.goofy {
+  top: 34%;
+  left: 14%;
+}
+
+svg {
+  z-index: 6;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.character-dropdown {
+  background-color: #f23d4c;
+  height: 80px;
+  width: 80px;
+  position: absolute;
+  z-index: 6;
 }
