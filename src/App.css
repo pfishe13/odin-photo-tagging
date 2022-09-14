@@ -2,16 +2,20 @@
   text-align: center;
 }
 
+* {
+  margin: 0;
+}
+
 body {
   height: 100%;
 }
 
-header,
-footer {
+header {
   box-sizing: border-box;
   padding: 0 10vh;
   width: 100vw;
-  position: sticky;
+  position: fixed;
+  z-index: 10;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -53,6 +57,8 @@ footer {
 .gameboard {
   /* DO NOT CHANGE FROM RELATIVE */
   position: relative;
+  box-sizing: border-box;
+  margin-top: 8vh;
 }
 
 .goofy,

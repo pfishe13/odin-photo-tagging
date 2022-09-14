@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Header from './Header';
-import Footer from './Footer';
 import Gameboard from './Gameboard';
 import InstructionsPopup from './InstructionsPopup';
-import { useRef } from 'react';
 import GameoverPopup from './GameoverPopup';
 
 const Game = () => {
@@ -18,61 +16,9 @@ const Game = () => {
   let clickedCoords;
   let clickedCharacter;
 
-  const perryRef = useRef();
-  const goofyRef = useRef();
-
-  useEffect(() => {
-    // console.log('Initial position setting');
-    setPositions();
-  }, [gameStarted]);
-
-  useEffect(() => {
-    window.addEventListener('resize', setPositions);
-  }, []);
-
-  const setPositions = () => {
-    const xPerry = perryRef.current.offsetLeft;
-    // console.log('Perry x coord', xPerry);
-    const yPerry = perryRef.current.offsetTop;
-    // console.log('Perry y coord', yPerry);
-
-    const xGoofy = goofyRef.current.offsetLeft;
-    // console.log('Goofy x coord', xGoofy);
-    const yGoofy = goofyRef.current.offsetTop;
-    // console.log('Goofy y coord', yGoofy);
-
-    let newCharacterState = [
-      {
-        name: 'perry',
-        found: characters[0].found,
-        xCoord: xPerry,
-        yCoord: yPerry,
-      },
-      {
-        name: 'goofy',
-        found: characters[1].found,
-        xCoord: xGoofy,
-        yCoord: yGoofy,
-      },
-    ];
-
-    // console.log('New state', newCharacterState);
-
-    setCharacters([...newCharacterState]);
-  };
-
   const startGame = () => {
     setGameStarted(true);
-    startTimer();
   };
-
-  const startTimer = () => {
-    let interval = setInterval(() => {
-      setTimer((time) => time + 100);
-    }, 100);
-  };
-
-  const stopTimer = () => {};
 
   const changeClickedCoords = (x, y) => {
     console.log(x, y);
@@ -99,8 +45,8 @@ const Game = () => {
 
     if (characterElement['found'] === false) {
       if (
-        characterElement.xCoord - clickedCoords.xCoord < 200 &&
-        characterElement.yCoord - clickedCoords.yCoord < 200
+        Math.abs(characterElement.xCoord - clickedCoords.xCoord) < 100 &&
+        Math.abs(characterElement.yCoord - clickedCoords.yCoord) < 100
       ) {
         characterElement.found = true;
       }
@@ -115,8 +61,8 @@ const Game = () => {
   const checkGameOver = () => {
     if (allCharactersFound()) {
       console.log('Game is over');
-      stopTimer();
-      setGameOver(!gameOver);
+      setGameOver((gameOver) => !gameOver);
+      //   console.log('Set game over value', gameOver);
     } else {
       console.log('Game not over yet');
     }
@@ -129,16 +75,21 @@ const Game = () => {
   return (
     <div>
       <Header timer={timer} />
-      {gameStarted ? null : <InstructionsPopup startGame={startGame} />}
+      {gameStarted ? (
+        <Gameboard
+          timer={timer}
+          setTimer={setTimer}
+          gameStarted={gameStarted}
+          gameOver={gameOver}
+          characters={characters}
+          setCharacters={setCharacters}
+          changeClickedCharacter={changeClickedCharacter}
+          changeClickedCoords={changeClickedCoords}
+        />
+      ) : (
+        <InstructionsPopup startGame={startGame} />
+      )}
       {gameOver ? <GameoverPopup timer={timer} /> : null}
-      <Gameboard
-        perryRef={perryRef}
-        goofyRef={goofyRef}
-        characters={characters}
-        changeClickedCharacter={changeClickedCharacter}
-        changeClickedCoords={changeClickedCoords}
-      />
-      <Footer />
     </div>
   );
 };
