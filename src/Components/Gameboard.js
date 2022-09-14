@@ -2,27 +2,36 @@ import React, { useEffect, useRef, useState } from 'react';
 import MainPicture from './images/disney-wheres-waldo.jpeg';
 import CharacterOptions from './CharacterOptions';
 
-const Gameboard = ({ perryRef, goofyRef, registerClick, characters }) => {
+const Gameboard = ({
+  perryRef,
+  goofyRef,
+  characters,
+  changeClickedCharacter,
+  changeClickedCoords,
+}) => {
   const [clickedCircle, setClickedCircle] = useState();
   const [characterOptions, setCharacterOptions] = useState();
 
   const getClickCoords = (event) => {
-    // var e = event.target;
-    // var dim = e.getBoundingClientRect();
-    // var x = event.clientX - dim.left;
-    // var y = event.clientY - dim.top;
-    console.log(characters);
+    // console.log(characters);
     const bounds = event.currentTarget.getBoundingClientRect();
     const x = event.clientX - bounds.left;
     const y = event.clientY - bounds.top;
-    console.log('Clicked x coord', x);
-    console.log('Clicked y coord', y);
+    // console.log('Clicked x coord', x);
+    // console.log('Clicked y coord', y);
     return [x, y];
   };
 
-  const showClickCircle = (e) => {
+  const userBoardClick = (e) => {
     let [x, y] = getClickCoords(e);
 
+    showClickedCircle(x, y);
+    changeClickedCoords(x, y);
+
+    showCharacterOptions(x, y);
+  };
+
+  const showClickedCircle = (x, y) => {
     let newCircle = (
       <svg>
         <circle
@@ -37,17 +46,21 @@ const Gameboard = ({ perryRef, goofyRef, registerClick, characters }) => {
     );
 
     setClickedCircle(newCircle);
-    showCharacterOptions(x, y);
   };
 
   const showCharacterOptions = (x, y) => {
     setCharacterOptions(
-      <CharacterOptions x={x} y={y} characters={characters} />
+      <CharacterOptions
+        x={x}
+        y={y}
+        characters={characters}
+        changeClickedCharacter={changeClickedCharacter}
+      />
     );
   };
 
   return (
-    <div className="gameboard" onClick={showClickCircle}>
+    <div className="gameboard" onClick={userBoardClick}>
       {clickedCircle ? clickedCircle : null}
       {characterOptions ? characterOptions : null}
       <img

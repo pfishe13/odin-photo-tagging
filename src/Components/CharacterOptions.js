@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CharacterOptions = ({ x, y, characters }) => {
+const CharacterOptions = ({ x, y, characters, changeClickedCharacter }) => {
   const position = {
     top: y - 40,
     left: x + 35,
@@ -8,7 +8,11 @@ const CharacterOptions = ({ x, y, characters }) => {
   return (
     <div style={position} className="character-dropdown">
       {characters.map((char, index) => {
-        return <div key={index}>{char.name}</div>;
+        return (
+          <div onClick={(e) => changeClickedCharacter(char.name)} key={index}>
+            {char.name}
+          </div>
+        );
       })}
     </div>
   );
