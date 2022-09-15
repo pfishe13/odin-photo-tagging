@@ -3,14 +3,22 @@ import Header from './Header';
 import Gameboard from './Gameboard';
 import InstructionsPopup from './InstructionsPopup';
 import GameoverPopup from './GameoverPopup';
+import perry from './images/perry.png';
+import goofy from './images/goofy.png';
+import rufus from './images/rufus.png';
+import kitbull from './images/kitbull.png';
+import miguel from './images/miguel.png';
 
 const Game = () => {
   const [gameStarted, setGameStarted] = useState(false);
   const [gameOver, setGameOver] = useState(false);
   const [timer, setTimer] = useState(0);
   const [characters, setCharacters] = useState([
-    { name: 'perry', found: false, xCoord: 0, yCoord: 0 },
-    { name: 'goofy', found: false, xCoord: 0, yCoord: 0 },
+    { name: 'perry', found: false, xCoord: 0, yCoord: 0, src: perry },
+    { name: 'goofy', found: false, xCoord: 0, yCoord: 0, src: goofy },
+    { name: 'rufus', found: false, xCoord: 0, yCoord: 0, src: rufus },
+    { name: 'kitbull', found: false, xCoord: 0, yCoord: 0, src: kitbull },
+    { name: 'miguel', found: false, xCoord: 0, yCoord: 0, src: miguel },
   ]);
 
   let clickedCoords;
@@ -21,27 +29,18 @@ const Game = () => {
   };
 
   const changeClickedCoords = (x, y) => {
-    console.log(x, y);
     clickedCoords = { xCoord: x, yCoord: y };
-    // setClickedCoords({ xCoord: x, yCoord: y });
   };
 
   const changeClickedCharacter = (characterName) => {
-    console.log(characterName);
     clickedCharacter = characterName;
-    // setClickedCharacter(characterName);
     checkCorrectMatch();
   };
 
   const checkCorrectMatch = () => {
-    console.log(clickedCoords);
-    console.log(clickedCharacter);
-
     const characterElement = characters.find(
       (elem) => elem.name === clickedCharacter
     );
-
-    // console.log('Character element', characterElement);
 
     if (characterElement['found'] === false) {
       if (
@@ -51,9 +50,9 @@ const Game = () => {
         characterElement.found = true;
       }
     }
-    console.log(
-      `${characterElement.name} found value: ${characterElement.found}`
-    );
+    // console.log(
+    //   `${characterElement.name} found value: ${characterElement.found}`
+    // );
 
     checkGameOver();
   };
@@ -62,7 +61,6 @@ const Game = () => {
     if (allCharactersFound()) {
       console.log('Game is over');
       setGameOver((gameOver) => !gameOver);
-      //   console.log('Set game over value', gameOver);
     } else {
       console.log('Game not over yet');
     }
@@ -74,7 +72,7 @@ const Game = () => {
 
   return (
     <div>
-      <Header timer={timer} />
+      <Header characters={characters} timer={timer} />
       {gameStarted ? (
         <Gameboard
           timer={timer}
@@ -87,7 +85,7 @@ const Game = () => {
           changeClickedCoords={changeClickedCoords}
         />
       ) : (
-        <InstructionsPopup startGame={startGame} />
+        <InstructionsPopup characters={characters} startGame={startGame} />
       )}
       {gameOver ? <GameoverPopup timer={timer} /> : null}
     </div>

@@ -17,15 +17,14 @@ const Gameboard = ({
 
   const perryRef = useRef();
   const goofyRef = useRef();
-  const imageRef = useRef();
+  const rufusRef = useRef();
+  const kitbullRef = useRef();
+  const miguelRef = useRef();
 
   useEffect(() => {
     setTimeout(() => {
       setPositions();
     }, 500);
-
-    console.log('Initial position setting');
-    console.log(characters);
   }, []);
 
   useEffect(() => {
@@ -49,54 +48,41 @@ const Gameboard = ({
 
   const setPositions = () => {
     const xPerry = perryRef.current.offsetLeft;
-    console.log('Perry x coord', xPerry);
     const yPerry = perryRef.current.offsetTop;
-    console.log('Perry y coord', yPerry);
 
     const xGoofy = goofyRef.current.offsetLeft;
-    console.log('Goofy x coord', xGoofy);
     const yGoofy = goofyRef.current.offsetTop;
-    console.log('Goofy y coord', yGoofy);
 
-    // const imageX = imageRef.current.offsetLeft;
-    // console.log('Image x coord', imageX);
-    // const imageY = imageRef.current.offsetTop;
-    // console.log('Image y coord', imageY);
+    const xRufus = rufusRef.current.offsetLeft;
+    const yRufus = rufusRef.current.offsetTop;
+
+    const xKitbull = kitbullRef.current.offsetLeft;
+    const yKitbull = kitbullRef.current.offsetTop;
+
+    const xMiguel = miguelRef.current.offsetLeft;
+    const yMiguel = miguelRef.current.offsetTop;
 
     let newCharacterState = [
-      {
-        name: 'perry',
-        found: characters[0].found,
-        xCoord: xPerry,
-        yCoord: yPerry,
-      },
-      {
-        name: 'goofy',
-        found: characters[1].found,
-        xCoord: xGoofy,
-        yCoord: yGoofy,
-      },
+      { ...characters[0], xCoord: xPerry, yCoord: yPerry },
+      { ...characters[1], xCoord: xGoofy, yCoord: yGoofy },
+      { ...characters[2], xCoord: xRufus, yCoord: yRufus },
+      { ...characters[3], xCoord: xKitbull, yCoord: yKitbull },
+      { ...characters[4], xCoord: xMiguel, yCoord: yMiguel },
     ];
-
-    // console.log('New state', newCharacterState);
 
     setCharacters([...newCharacterState]);
   };
 
   const getClickCoords = (event) => {
-    // console.log(characters);
     const bounds = event.currentTarget.getBoundingClientRect();
     const x = event.clientX - bounds.left;
     const y = event.clientY - bounds.top;
-    // console.log('Clicked x coord', x);
-    // console.log('Clicked y coord', y);
+
     return [x, y];
   };
 
   const userBoardClick = (e) => {
     let [x, y] = getClickCoords(e);
-
-    console.log('Current character states', characters);
 
     showClickedCircle(x, y);
     changeClickedCoords(x, y);
@@ -136,10 +122,13 @@ const Gameboard = ({
     <div className="gameboard" onClick={userBoardClick}>
       {clickedCircle ? clickedCircle : null}
       {characterOptions ? characterOptions : null}
-      <div ref={perryRef} className="perry"></div>
-      <div ref={goofyRef} className="goofy"></div>
+      <div ref={perryRef} className="character perry"></div>
+      <div ref={goofyRef} className="character goofy"></div>
+      <div ref={rufusRef} className="character rufus"></div>
+      <div ref={kitbullRef} className="character kitbull"></div>
+      <div ref={miguelRef} className="character miguel"></div>
+
       <img
-        ref={imageRef}
         className="main-picture"
         alt="main gameboard"
         src={MainPicture}
