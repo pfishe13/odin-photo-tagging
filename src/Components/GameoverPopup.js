@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import Timer from './Timer';
+import Leaderboard from './Leaderboard';
+
 const GameoverPopup = ({ timer, addToLeaderboard }) => {
-  const [userName, setUserName] = useState();
+  const [userName, setUserName] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (e) => {
     setUserName(e.target.value);
-    console.log(userName);
   };
 
   const handleSubmit = (e) => {
@@ -18,12 +19,14 @@ const GameoverPopup = ({ timer, addToLeaderboard }) => {
   };
 
   return (
-    <div className="instructions-popup">
+    <div className="instructions-gameover-popup">
       <h2>GAME OVER</h2>
-      <h4>
+      <h2>
         Final time <Timer timer={timer} />
-      </h4>
-      {submitted ? null : (
+      </h2>
+      {submitted ? (
+        <Leaderboard />
+      ) : (
         <form onSubmit={handleSubmit}>
           <label>
             Name:
@@ -39,7 +42,7 @@ const GameoverPopup = ({ timer, addToLeaderboard }) => {
           </button>
         </form>
       )}
-      {/* <button>Start</button> */}
+      <button onClick={(e) => window.location.reload()}>Play Again!</button>
     </div>
   );
 };

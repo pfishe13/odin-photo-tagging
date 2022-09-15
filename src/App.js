@@ -1,6 +1,4 @@
-import { collection, addDoc, getDocs } from 'firebase/firestore';
 import './App.css';
-import db from './firebase-config';
 import Game from './Components/Game';
 
 function App() {

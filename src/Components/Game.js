@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import db from '../firebase-config';
+import { collection, addDoc, getDocs } from 'firebase/firestore';
 import Header from './Header';
 import Gameboard from './Gameboard';
 import InstructionsPopup from './InstructionsPopup';
@@ -50,19 +52,13 @@ const Game = () => {
         characterElement.found = true;
       }
     }
-    // console.log(
-    //   `${characterElement.name} found value: ${characterElement.found}`
-    // );
 
     checkGameOver();
   };
 
   const checkGameOver = () => {
     if (allCharactersFound()) {
-      console.log('Game is over');
       setGameOver((gameOver) => !gameOver);
-    } else {
-      console.log('Game not over yet');
     }
   };
 
@@ -70,14 +66,16 @@ const Game = () => {
     return characters.every((item) => item.found === true);
   };
 
-  const addToLeaderboard = (userName) => {
-    console.log(userName);
-    console.log(timer);
+  const addToLeaderboard = async (userName) => {
+    const docRef = await addDoc(collection(db, 'leaderboard'), {
+      name: userName,
+      time: timer,
+    });
   };
 
   return (
     <div>
-      <Header characters={characters} timer={timer} />
+      <Header gameStarted={gameStarted} characters={characters} timer={timer} />
       {gameStarted && !gameOver ? (
         <Gameboard
           timer={timer}
