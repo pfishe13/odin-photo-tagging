@@ -21,6 +21,8 @@ const Gameboard = ({
   const kitbullRef = useRef();
   const miguelRef = useRef();
 
+  // const userFinalTime = useRef(null);
+
   useEffect(() => {
     setTimeout(() => {
       setPositions();
@@ -36,6 +38,8 @@ const Gameboard = ({
     }
     if (gameOver) {
       clearInterval(interval);
+      // userFinalTime.current = timer;
+      // console.log(userFinalTime);
       setClickedCircle(null);
       setCharacterOptions(null);
     }

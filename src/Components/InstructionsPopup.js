@@ -5,11 +5,13 @@ const InstructionsPopup = ({ characters, startGame }) => {
   return (
     <div className="instructions-popup">
       <div>
-        <h2>Instructions</h2>
-        <h3>Find these 5 characters</h3>
+        <h3>Instructions</h3>
+        <h2>Find these 5 characters</h2>
       </div>
       <CharacterPictures characters={characters} />
-      <button onClick={startGame}>Start</button>
+      <button className="button-19" onClick={startGame}>
+        Start
+      </button>
     </div>
   );
 };

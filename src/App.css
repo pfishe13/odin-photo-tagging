@@ -4,9 +4,11 @@
 
 * {
   margin: 0;
+  color: #eaf2ef;
 }
 
 body {
+  background-color: #eaf2ef;
   height: 100%;
 }
 
@@ -35,7 +37,7 @@ header > div {
 
 .instructions-popup {
   z-index: 5;
-  background-color: #553df2;
+  background-color: #449dd1;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -48,6 +50,7 @@ header > div {
     rgba(0, 0, 0, 0.22) 0px 15px 12px;
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: space-around;
 }
 
@@ -67,7 +70,7 @@ header > div {
 
 .character-picture {
   padding: 0 6px;
-  height: 50px;
+  height: 60px;
 }
 
 .character {
@@ -111,9 +114,58 @@ svg {
 }
 
 .character-dropdown {
-  background-color: #f23d4c;
-  height: 80px;
-  width: 80px;
+  padding: 6px;
+  gap: 6px;
+  border-radius: 6px;
+  background-color: #424b54;
+  display: flex;
+  flex-direction: column;
   position: absolute;
   z-index: 6;
+}
+
+button {
+  background-color: #ffa552;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  font-family: din-round, sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  outline: none;
+  overflow: visible;
+  padding: 13px 16px;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  width: 50%;
+}
+
+form {
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+input {
+  margin-left: 4px;
+  background-color: transparent;
+  border: 2px solid #eaf2ef;
+  border-radius: 6px;
+  padding: 4px 12px;
+  font-size: 16px;
+}
+
+.submit-name-button {
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  display: inline;
+  width: auto;
+  height: auto;
 }

@@ -70,10 +70,15 @@ const Game = () => {
     return characters.every((item) => item.found === true);
   };
 
+  const addToLeaderboard = (userName) => {
+    console.log(userName);
+    console.log(timer);
+  };
+
   return (
     <div>
       <Header characters={characters} timer={timer} />
-      {gameStarted ? (
+      {gameStarted && !gameOver ? (
         <Gameboard
           timer={timer}
           setTimer={setTimer}
@@ -87,7 +92,9 @@ const Game = () => {
       ) : (
         <InstructionsPopup characters={characters} startGame={startGame} />
       )}
-      {gameOver ? <GameoverPopup timer={timer} /> : null}
+      {gameOver ? (
+        <GameoverPopup timer={timer} addToLeaderboard={addToLeaderboard} />
+      ) : null}
     </div>
   );
 };
