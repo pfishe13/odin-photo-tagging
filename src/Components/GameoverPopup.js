@@ -4,7 +4,7 @@ import Leaderboard from './Leaderboard';
 
 const GameoverPopup = ({ timer, addToLeaderboard }) => {
   const [userName, setUserName] = useState('');
-  const [submitted, setSubmitted] = useState(false);
+  const [showLeaderboard, setShowLeaderboard] = useState(false);
 
   const handleChange = (e) => {
     setUserName(e.target.value);
@@ -15,7 +15,12 @@ const GameoverPopup = ({ timer, addToLeaderboard }) => {
     e.preventDefault();
 
     setUserName('');
-    setSubmitted(true);
+    toggleLeaderboard();
+  };
+
+  const toggleLeaderboard = () => {
+    console.log('toggle');
+    setShowLeaderboard(!showLeaderboard);
   };
 
   return (
@@ -24,7 +29,7 @@ const GameoverPopup = ({ timer, addToLeaderboard }) => {
       <h2>
         Final time <Timer timer={timer} />
       </h2>
-      {submitted ? (
+      {showLeaderboard ? (
         <Leaderboard />
       ) : (
         <form onSubmit={handleSubmit}>
@@ -42,6 +47,9 @@ const GameoverPopup = ({ timer, addToLeaderboard }) => {
           </button>
         </form>
       )}
+      <span style={{ textDecoration: 'underline' }} onClick={toggleLeaderboard}>
+        {showLeaderboard ? 'Hide Leaderboard' : 'Show Leaderboard'}
+      </span>
       <button onClick={(e) => window.location.reload()}>Play Again!</button>
     </div>
   );

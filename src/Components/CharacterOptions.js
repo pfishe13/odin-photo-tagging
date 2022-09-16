@@ -1,9 +1,15 @@
 import React from 'react';
 
-const CharacterOptions = ({ x, y, characters, changeClickedCharacter }) => {
+const CharacterOptions = ({
+  x,
+  y,
+  characters,
+  changeClickedCharacter,
+  clearClickedCircle,
+}) => {
   const position = {
     top: y - 30,
-    left: x + 45,
+    left: x + 38,
   };
   return (
     <div style={position} className="character-dropdown">
@@ -15,7 +21,10 @@ const CharacterOptions = ({ x, y, characters, changeClickedCharacter }) => {
               className="character-picture"
               alt={char.name}
               src={char.src}
-              onClick={(e) => changeClickedCharacter(char.name)}
+              onClick={(e) => {
+                changeClickedCharacter(char.name);
+                clearClickedCircle();
+              }}
             ></img>
           );
         } else {

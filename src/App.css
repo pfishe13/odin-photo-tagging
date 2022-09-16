@@ -81,41 +81,39 @@ h2 {
 }
 
 .character-picture {
-  padding: 0 6px;
-  height: 60px;
+  padding: 0 4px;
+  height: 50px;
 }
 
 .character {
-  background-color: blue;
-  opacity: 50%;
-  height: 7%;
-  width: 7%;
+  height: 2%;
+  width: 2%;
   position: absolute;
 }
 
 .perry {
-  top: 14%;
-  left: 40%;
+  top: 17%;
+  left: 43%;
 }
 
 .goofy {
-  top: 34%;
-  left: 14%;
+  top: 37%;
+  left: 17%;
 }
 
 .rufus {
-  top: 56%;
-  left: 56%;
+  top: 59%;
+  left: 59%;
 }
 
 .kitbull {
-  top: 19%;
-  left: 88%;
+  top: 23%;
+  left: 91%;
 }
 
 .miguel {
-  top: 80%;
-  left: 50%;
+  top: 83%;
+  left: 53%;
 }
 
 svg {
@@ -183,7 +181,7 @@ input {
 }
 
 .leaderboard-container {
-  height: 15vh;
+  height: 12vh;
   overflow: auto;
 }
 

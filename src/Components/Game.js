@@ -46,8 +46,8 @@ const Game = () => {
 
     if (characterElement['found'] === false) {
       if (
-        Math.abs(characterElement.xCoord - clickedCoords.xCoord) < 100 &&
-        Math.abs(characterElement.yCoord - clickedCoords.yCoord) < 100
+        Math.abs(characterElement.xCoord - clickedCoords.xCoord) < 70 &&
+        Math.abs(characterElement.yCoord - clickedCoords.yCoord) < 70
       ) {
         characterElement.found = true;
       }

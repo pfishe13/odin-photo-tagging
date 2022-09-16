@@ -14,6 +14,7 @@ const Gameboard = ({
 }) => {
   const [clickedCircle, setClickedCircle] = useState();
   const [characterOptions, setCharacterOptions] = useState();
+  const [characterClicked, setCharacterClicked] = useState(false);
 
   const perryRef = useRef();
   const goofyRef = useRef();
@@ -89,7 +90,6 @@ const Gameboard = ({
 
     showClickedCircle(x, y);
     changeClickedCoords(x, y);
-
     showCharacterOptions(x, y);
   };
 
@@ -106,8 +106,15 @@ const Gameboard = ({
         />
       </svg>
     );
-
     setClickedCircle(newCircle);
+  };
+
+  const clearClickedCircle = () => {
+    console.log('Cleared');
+    // setClickedCircle(null);
+    setCharacterOptions(null);
+    // setCharacterClicked(true);
+    // console.log(characterClicked);
   };
 
   const showCharacterOptions = (x, y) => {
@@ -117,6 +124,7 @@ const Gameboard = ({
         y={y}
         characters={characters}
         changeClickedCharacter={changeClickedCharacter}
+        clearClickedCircle={clearClickedCircle}
       />
     );
   };
@@ -130,7 +138,6 @@ const Gameboard = ({
       <div ref={rufusRef} className="character rufus"></div>
       <div ref={kitbullRef} className="character kitbull"></div>
       <div ref={miguelRef} className="character miguel"></div>
-
       <img
         className="main-picture"
         alt="main gameboard"
