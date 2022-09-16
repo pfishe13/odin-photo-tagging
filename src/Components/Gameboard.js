@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useCallback, useRef, useState } from 'react';
 import MainPicture from './images/disney-wheres-waldo.jpeg';
 import CharacterOptions from './CharacterOptions';
 
@@ -45,10 +45,12 @@ const Gameboard = ({
   useEffect(() => {
     window.addEventListener('resize', setPositions);
 
-    return window.removeEventListener('resize', setPositions);
-  }, []);
+    return () => {
+      return window.removeEventListener('resize', setPositions);
+    };
+  }, [characters]);
 
-  const setPositions = () => {
+  const setPositions = useCallback(() => {
     const xPerry = perryRef.current.offsetLeft;
     const yPerry = perryRef.current.offsetTop;
 
@@ -71,9 +73,8 @@ const Gameboard = ({
       { ...characters[3], xCoord: xKitbull, yCoord: yKitbull },
       { ...characters[4], xCoord: xMiguel, yCoord: yMiguel },
     ];
-
     setCharacters([...newCharacterState]);
-  };
+  }, [characters]);
 
   const getClickCoords = (event) => {
     const bounds = event.currentTarget.getBoundingClientRect();
