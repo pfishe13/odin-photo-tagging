@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/odin-photo-tagging/static/css/main.a89ebc58.css",
+    "main.js": "/odin-photo-tagging/static/js/main.04ba42a2.js",
+    "static/media/disney-wheres-waldo.jpeg": "/odin-photo-tagging/static/media/disney-wheres-waldo.dc92fd99ccd8bc81cbc3.jpeg",
+    "static/media/goofy.png": "/odin-photo-tagging/static/media/goofy.344a6a2684e7d6218aa4.png",
+    "static/media/miguel.png": "/odin-photo-tagging/static/media/miguel.525c7e8277e0d283eaa8.png",
+    "static/media/kitbull.png": "/odin-photo-tagging/static/media/kitbull.856499fd2387c454a509.png",
+    "static/media/rufus.png": "/odin-photo-tagging/static/media/rufus.6a35eb6b0dfd725e7f7e.png",
+    "static/media/perry.png": "/odin-photo-tagging/static/media/perry.c4017f5d259e5ad5bc67.png",
+    "index.html": "/odin-photo-tagging/index.html",
+    "main.a89ebc58.css.map": "/odin-photo-tagging/static/css/main.a89ebc58.css.map",
+    "main.04ba42a2.js.map": "/odin-photo-tagging/static/js/main.04ba42a2.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a89ebc58.css",
+    "static/js/main.04ba42a2.js"
+  ]
+}
