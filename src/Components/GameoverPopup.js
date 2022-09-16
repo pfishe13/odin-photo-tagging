@@ -4,6 +4,7 @@ import Leaderboard from './Leaderboard';
 
 const GameoverPopup = ({ timer, addToLeaderboard }) => {
   const [userName, setUserName] = useState('');
+  const [submittedScore, setSubmittedScore] = useState(false);
   const [showLeaderboard, setShowLeaderboard] = useState(false);
 
   const handleChange = (e) => {
@@ -12,6 +13,7 @@ const GameoverPopup = ({ timer, addToLeaderboard }) => {
 
   const handleSubmit = (e) => {
     addToLeaderboard(userName);
+    setSubmittedScore(true);
     e.preventDefault();
 
     setUserName('');
@@ -46,9 +48,24 @@ const GameoverPopup = ({ timer, addToLeaderboard }) => {
           </button>
         </form>
       )}
-      <span style={{ textDecoration: 'underline' }} onClick={toggleLeaderboard}>
-        {showLeaderboard ? 'Hide Leaderboard' : 'Show Leaderboard'}
-      </span>
+      {!showLeaderboard && (
+        <span
+          style={{ textDecoration: 'underline' }}
+          onClick={toggleLeaderboard}
+        >
+          Show Leaderboard
+        </span>
+      )}
+      {showLeaderboard && !submittedScore && (
+        <span
+          style={{ textDecoration: 'underline' }}
+          onClick={toggleLeaderboard}
+        >
+          Hide Leaderboard
+        </span>
+      )}
+      {/* { (showLeaderboard && submittedScore) && <span style={{ textDecoration: 'underline' }} onClick={toggleLeaderboard}></span>} */}
+
       <button onClick={(e) => window.location.reload()}>Play Again!</button>
     </div>
   );
