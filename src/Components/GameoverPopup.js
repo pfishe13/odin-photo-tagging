@@ -19,7 +19,6 @@ const GameoverPopup = ({ timer, addToLeaderboard }) => {
   };
 
   const toggleLeaderboard = () => {
-    console.log('toggle');
     setShowLeaderboard(!showLeaderboard);
   };
 

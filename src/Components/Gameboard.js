@@ -3,7 +3,6 @@ import MainPicture from './images/disney-wheres-waldo.jpeg';
 import CharacterOptions from './CharacterOptions';
 
 const Gameboard = ({
-  timer,
   setTimer,
   gameStarted,
   gameOver,
@@ -14,7 +13,6 @@ const Gameboard = ({
 }) => {
   const [clickedCircle, setClickedCircle] = useState();
   const [characterOptions, setCharacterOptions] = useState();
-  const [characterClicked, setCharacterClicked] = useState(false);
 
   const perryRef = useRef();
   const goofyRef = useRef();
@@ -109,14 +107,6 @@ const Gameboard = ({
     setClickedCircle(newCircle);
   };
 
-  const clearClickedCircle = () => {
-    console.log('Cleared');
-    // setClickedCircle(null);
-    setCharacterOptions(null);
-    // setCharacterClicked(true);
-    // console.log(characterClicked);
-  };
-
   const showCharacterOptions = (x, y) => {
     setCharacterOptions(
       <CharacterOptions
@@ -124,7 +114,6 @@ const Gameboard = ({
         y={y}
         characters={characters}
         changeClickedCharacter={changeClickedCharacter}
-        clearClickedCircle={clearClickedCircle}
       />
     );
   };

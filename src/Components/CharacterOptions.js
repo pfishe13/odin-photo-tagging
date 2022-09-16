@@ -1,12 +1,6 @@
 import React from 'react';
 
-const CharacterOptions = ({
-  x,
-  y,
-  characters,
-  changeClickedCharacter,
-  clearClickedCircle,
-}) => {
+const CharacterOptions = ({ x, y, characters, changeClickedCharacter }) => {
   const position = {
     top: y - 30,
     left: x + 38,
@@ -23,7 +17,6 @@ const CharacterOptions = ({
               src={char.src}
               onClick={(e) => {
                 changeClickedCharacter(char.name);
-                clearClickedCircle();
               }}
             ></img>
           );
